@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="60dp"
             android:layout_height="70dp"
-            app:srcCompat="@drawable/inventory" />
+            app:srcCompat="@drawable/note" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,18 +26,30 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtTypeItemInventory"
+                android:id="@+id/txtDateStartItemBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Вид: " />
+                android:text="Начало:" />
 
             <TextView
-                android:id="@+id/txtModelItemInventory"
+                android:id="@+id/txtDateEndItemBooking"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Модель: " />
+                android:text="Конец:" />
+            <TextView
+                android:id="@+id/txtStatusItemBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Статус:" />
         </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnDeleteBooking"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_delete" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

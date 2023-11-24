@@ -1,4 +1,4 @@
-package com.example.sportikmobileapp.database;
+package com.example.sportikmobileapp.database.inventory;
 
 public class ModelInventoryModel {
     private int modelId;

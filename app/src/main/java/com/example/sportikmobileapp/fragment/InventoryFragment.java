@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 
 import com.example.sportikmobileapp.R;
 import com.example.sportikmobileapp.adapter.InventoryAdapter;
-import com.example.sportikmobileapp.database.InventoryModel;
-import com.example.sportikmobileapp.database.ModelInventoryModel;
-import com.example.sportikmobileapp.database.TypeInventoryModel;
+import com.example.sportikmobileapp.database.inventory.InventoryModel;
+import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
+import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
 
 import java.util.ArrayList;
 
@@ -48,4 +48,6 @@ public class InventoryFragment extends Fragment {
         recyclerViewInventory.setAdapter(new InventoryAdapter(getActivity(), inventoryList));
         return view;
     }
+
+
 }

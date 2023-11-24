@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.database.InventoryModel;
+import com.example.sportikmobileapp.database.inventory.InventoryModel;
 
 import java.util.ArrayList;
 
@@ -29,8 +29,13 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull InventoryViewHolder holder, int position) {
-        holder.txtDateItemRecord.setText(inventoryList.get(position).getType().getName());
-        holder.txtDoctorItemRecord.setText(inventoryList.get(position).getModel().getName());
+        //берем данные из списка
+        String typeInventory = "Вид: " + inventoryList.get(position).getType().getName();
+        String modelInventory = "Модель: " + inventoryList.get(position).getModel().getName();
+
+        //заполняем в шаблон инвентаря item_inventory
+        holder.txtTypeItemInventory.setText(typeInventory);
+        holder.txtModelItemInventory.setText(modelInventory);
     }
 
     @Override

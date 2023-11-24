@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sportikmobileapp.R;
 
 public class InventoryViewHolder extends RecyclerView.ViewHolder {
-    TextView txtDateItemRecord, txtDoctorItemRecord;
+    TextView txtTypeItemInventory, txtModelItemInventory;
 
     public InventoryViewHolder(@NonNull View item) {
         super(item);
-        txtDateItemRecord = item.findViewById(R.id.txtDateItemRecord);
-        txtDoctorItemRecord = item.findViewById(R.id.txtDoctorItemRecord);
+        txtTypeItemInventory = item.findViewById(R.id.txtTypeItemInventory);
+        txtModelItemInventory = item.findViewById(R.id.txtModelItemInventory);
     }
 }
