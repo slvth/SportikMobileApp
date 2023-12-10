@@ -24,7 +24,11 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryViewHolder>{
     @NonNull
     @Override
     public InventoryViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InventoryViewHolder(LayoutInflater.from(context).inflate(R.layout.item_inventory, parent,false));
+        return new InventoryViewHolder(
+                LayoutInflater.from(context).inflate(R.layout.item_inventory, parent,false),
+                context,
+                inventoryList
+        );
     }
 
     @Override

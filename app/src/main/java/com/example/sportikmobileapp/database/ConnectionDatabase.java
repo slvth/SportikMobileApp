@@ -18,7 +18,9 @@ public class ConnectionDatabase {
         //192.168.43.57
         //192.168.0.174
         //10.238.167.66
-        String ip="10.238.167.66", port="5432", db="db_sportik2", username="postgres", password="12345";
+        //10.238.167.232
+        //192.168.43.57
+        String ip="10.238.167.232", port="5432", db="db_sportik2", username="postgres", password="12345";
 
         StrictMode.ThreadPolicy threadPolicy =
                 new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -31,10 +33,6 @@ public class ConnectionDatabase {
             connectURL = "jdbc:postgresql://"+ip+":"+port+"/"+db;
 
             String finalConnectURL = connectURL;
-            //connection = DriverManager.getConnection(finalConnectURL, username, password);
-            //HttpUrlConnection conn = (HttpURLConnection) url.openConnection();
-            //connection.on.(7000);
-
 
             if(isConnectionValid(DriverManager.getConnection(finalConnectURL, username, password)))
                 connection = DriverManager.getConnection(finalConnectURL, username, password);
@@ -58,37 +56,6 @@ public class ConnectionDatabase {
         }
         catch (SQLException e) {
             Log.e("EXCEPTION", e.getMessage());
-        }
-        return false;
-    }
-
-    public class  isConn extends AsyncTask<String, String, String> {
-        String text = "";
-        Boolean isSuccess = false;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-        }
-
-        @Override
-        protected String doInBackground(String... strings) {
-            Connection connection1 = connectionClass();
-
-            return text;
-        }
-    }
-
-    public static Boolean isValid(Connection connection)
-            throws SQLException
-    {
-        if (connection.isValid(5)) {
-            return  true;
         }
         return false;
     }

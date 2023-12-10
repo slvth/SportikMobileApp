@@ -1,6 +1,7 @@
 package com.example.sportikmobileapp.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -13,7 +14,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.sportikmobileapp.BookingAddActivity;
 import com.example.sportikmobileapp.R;
 import com.example.sportikmobileapp.adapter.BookingAdapter;
 import com.example.sportikmobileapp.adapter.InventoryAdapter;
@@ -37,11 +40,19 @@ public class BookingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_booking, container, false);
 
         recyclerViewBooking = view.findViewById(R.id.recyclerViewBooking);
+        Button btnBooking = view.findViewById(R.id.btnBooking);
+        btnBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BookingAddActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
 
         downloadDataToRecyclerview();
-
         return view;
     }
+
 
     private void downloadDataToRecyclerview(){
         ArrayList<BookingModel> bookingList = new ArrayList<>();
@@ -53,7 +64,7 @@ public class BookingFragment extends Fragment {
         if(connection != null){
             /*
             SharedPreferences sharedPref = getActivity().getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE);
-            int pacient_id = sharedPref.getInt(getString(R.string.pref_id), 0);
+            int user_id = sharedPref.getInt(getString(R.string.pref_id), 0);
             */
             int user_id = 1;
 

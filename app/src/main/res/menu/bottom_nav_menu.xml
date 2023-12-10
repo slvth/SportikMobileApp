@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/inventory"
         android:title="Инвентарь"
-        android:icon="@drawable/note"/>
+        android:icon="@drawable/inventory"/>
     <item android:id="@+id/booking"
         android:title="Бронирование"
         android:icon="@drawable/note"/>

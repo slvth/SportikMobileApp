@@ -1,22 +1,20 @@
-package com.example.sportikmobileapp.fragment;
+package com.example.sportikmobileapp;
 
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 
-import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.adapter.BookingAdapter;
 import com.example.sportikmobileapp.adapter.InventoryAdapter;
+import com.example.sportikmobileapp.adapter.InventoryAddAdapter;
 import com.example.sportikmobileapp.database.ConnectionDatabase;
-import com.example.sportikmobileapp.database.booking.BookingModel;
+import com.example.sportikmobileapp.database.booking.BookingDetailModel;
 import com.example.sportikmobileapp.database.inventory.InventoryModel;
 import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
 import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
@@ -26,20 +24,41 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class InventoryFragment extends Fragment {
+public class BookingAddActivity extends AppCompatActivity {
     Connection connection;
-    RecyclerView recyclerViewInventory;
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_inventory, container, false);
+    RecyclerView recyclerViewBookingAdd;
+    ArrayList<BookingDetailModel> bookingDetalList;
 
-        recyclerViewInventory = view.findViewById(R.id.recyclerViewInventory);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_booking_add);
+
+        recyclerViewBookingAdd = findViewById(R.id.recyclerViewBookingAdd);
+        Button btnBack = findViewById(R.id.btnBackBookingAdd);
+        Button btnOpenInventoryAdd = findViewById(R.id.btnOpenInventoryAdd);
+
+        bookingDetalList = new ArrayList<>();
+        bookingDetalList.add(new BookingDetailModel(1, 1, 1, 10));
+        bookingDetalList.add(new BookingDetailModel(1, 1, 2, 20));
+
         downloadDataToRecyclerview();
 
-        return view;
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setResult(RESULT_CANCELED, getIntent());
+                finish();
+            }
+        });
+        btnOpenInventoryAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), InventoryAddActivity.class);
+                startActivityForResult(intent, 100);
+            }
+        });
     }
-
     private void downloadDataToRecyclerview(){
         ArrayList<InventoryModel> inventoryList = new ArrayList<>();
         ConnectionDatabase connectionSQL = new ConnectionDatabase();
@@ -75,8 +94,7 @@ public class InventoryFragment extends Fragment {
             }
         }
 
-        recyclerViewInventory.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerViewInventory.setAdapter(new InventoryAdapter(getActivity(), inventoryList));
+        recyclerViewBookingAdd.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewBookingAdd.setAdapter(new InventoryAddAdapter(this, inventoryList, bookingDetalList, true));
     }
-
 }

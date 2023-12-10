@@ -1,6 +1,8 @@
 package com.example.sportikmobileapp.database.inventory;
 
-public class ModelInventoryModel {
+import java.io.Serializable;
+
+public class ModelInventoryModel implements Serializable {
     private int modelId;
     private String name;
 

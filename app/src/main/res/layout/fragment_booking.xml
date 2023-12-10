@@ -7,6 +7,13 @@
     android:layout_marginHorizontal="10dp"
     tools:context=".fragment.BookingFragment">
 
+    <Button
+        android:id="@+id/btnBooking"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Забронировать"
+        android:layout_marginTop="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewBooking"
         android:layout_width="match_parent"

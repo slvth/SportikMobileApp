@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp"
+    app:cardUseCompatPadding="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/inventory" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtTypeItemInventoryAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Вид:" />
+
+            <TextView
+                android:id="@+id/txtModelItemInventoryAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Модель:"/>
+
+            <TextView
+                android:id="@+id/txtCostItemInventoryAdd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Стоимость:"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnMinusItemInventoryAdd"
+                    android:layout_width="49dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:background="@color/white"
+                    android:src="@drawable/minus"/>
+
+                <TextView
+                    android:id="@+id/txtCountItemInventoryAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginHorizontal="5dp"
+                    android:text="100"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:textSize="18sp"/>
+                <ImageButton
+                    android:id="@+id/btnPlusItemInventoryAdd"
+                    android:layout_width="49dp"
+                    android:layout_height="match_parent"
+                    android:scaleType="center"
+                    android:background="@color/white"
+                    android:src="@drawable/plus"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnAddItemInventoryAdd"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:src="@drawable/plus"/>
+        <ImageButton
+            android:id="@+id/btnDeleteItemInventoryAdd"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:src="@android:drawable/ic_menu_delete" />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
