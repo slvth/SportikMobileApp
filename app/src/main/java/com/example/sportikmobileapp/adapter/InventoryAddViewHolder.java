@@ -3,9 +3,11 @@ package com.example.sportikmobileapp.adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,7 +23,8 @@ import java.util.ArrayList;
 public class InventoryAddViewHolder extends RecyclerView.ViewHolder {
 
     TextView txtType, txtModel, txtCost, txtCount;
-    ImageButton btnMinus, btnPlus, btnAdd, btnDelete;
+    ImageButton btnMinus, btnPlus, btnAdd, btnDelete, btnCheck;
+    ImageView imgLeft;
 
     public InventoryAddViewHolder(
             @NonNull View item,
@@ -40,6 +43,9 @@ public class InventoryAddViewHolder extends RecyclerView.ViewHolder {
         btnPlus = item.findViewById(R.id.btnPlusItemInventoryAdd);
         btnAdd = item.findViewById(R.id.btnAddItemInventoryAdd);
         btnDelete = item.findViewById(R.id.btnDeleteItemInventoryAdd);
+        btnCheck = item.findViewById(R.id.btnCheckItemInventoryAdd);
+
+        imgLeft = item.findViewById(R.id.imgLeftItemInventoryAdd);
 
         if(isBookingAddActivity){
 

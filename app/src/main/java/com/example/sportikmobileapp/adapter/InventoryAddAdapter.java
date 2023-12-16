@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -67,6 +68,7 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
             holder.txtCost.setText(costInventory);
 
             holder.btnAdd.setVisibility(View.GONE);
+            holder.btnCheck.setVisibility(View.GONE);
             //делаем ведимыми кнопки - так как инвентарь добавлен в список бронирования
             holder.btnPlus.setVisibility(View.VISIBLE);
             holder.btnMinus.setVisibility(View.VISIBLE);
@@ -76,16 +78,25 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
 
         }
         else{
+            holder.btnAdd.setVisibility(View.VISIBLE);
+            holder.btnAdd.setVisibility(View.GONE);
+            holder.btnPlus.setVisibility(View.GONE);
+            holder.btnMinus.setVisibility(View.GONE);
+            holder.btnDelete.setVisibility(View.GONE);
+            holder.txtCount.setVisibility(View.GONE);
+            holder.btnCheck.setVisibility(View.GONE);
+            holder.imgLeft.getLayoutParams().height = 150;
+            holder.imgLeft.getLayoutParams().width = 150;
+
             for(BookingDetailModel item: bookingDetailList){
-                InventoryModel inventory = null;
-                for(InventoryModel itemInventory: inventoryList){
-                    if(itemInventory.getInventory_id()==item.getInventoryId()){
-                        //inventoryList.remove(itemInventory);
-                        //notifyItemRemoved(position);
-                        //notifyItemRangeChanged(position, inventoryList.size());
-                    }
-
-
+                if(inventoryList.get(position).getInventory_id()==item.getInventoryId()){
+                    holder.btnAdd.setVisibility(View.GONE);
+                    holder.btnCheck.setVisibility(View.VISIBLE);
+                    break;
+                }
+                else{
+                    holder.btnAdd.setVisibility(View.VISIBLE);
+                    holder.btnCheck.setVisibility(View.GONE);
                 }
             }
 
@@ -99,12 +110,14 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
             holder.txtModel.setText(modelInventory);
             holder.txtCost.setText(costInventory);
 
+            /*
             holder.btnAdd.setVisibility(View.VISIBLE);
             //делаем неведимыми кнопки - так как инвентарь не добавлен в список бронирования
             holder.btnPlus.setVisibility(View.GONE);
             holder.btnMinus.setVisibility(View.GONE);
             holder.btnDelete.setVisibility(View.GONE);
             holder.txtCount.setVisibility(View.GONE);
+            holder.btnCheck.setVisibility(View.GONE);*/
 
             //обработчик нажатия на добавление инвентаря
             holder.btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -113,11 +126,11 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
                     bookingDetailList.add(new BookingDetailModel(inventoryList.get(holder.getAdapterPosition()).getInventory_id(), 1, inventoryList.get(holder.getAdapterPosition())));
                     holder.btnAdd.setVisibility(View.GONE);
                     //делаем ведимыми кнопки - так как инвентарь добавлен в список бронирования
-                    holder.btnPlus.setVisibility(View.VISIBLE);
+                    /*holder.btnPlus.setVisibility(View.VISIBLE);
                     holder.btnMinus.setVisibility(View.VISIBLE);
                     holder.btnDelete.setVisibility(View.VISIBLE);
-                    holder.txtCount.setVisibility(View.VISIBLE);
-
+                    holder.txtCount.setVisibility(View.VISIBLE);*/
+                    holder.btnCheck.setVisibility(View.VISIBLE);
                 }
             });
         }

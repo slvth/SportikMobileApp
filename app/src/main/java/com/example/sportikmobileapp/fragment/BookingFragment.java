@@ -29,11 +29,15 @@ import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 
 public class BookingFragment extends Fragment {
     Connection connection;
     RecyclerView recyclerViewBooking;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,9 +89,13 @@ public class BookingFragment extends Fragment {
             }
         }
 
+
         recyclerViewBooking.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerViewBooking.setAdapter(new BookingAdapter(getActivity(), bookingList));
     }
+
+
+
 
 
 }
