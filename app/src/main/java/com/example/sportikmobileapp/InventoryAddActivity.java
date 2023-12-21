@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.CalendarContract;
@@ -27,6 +28,8 @@ public class InventoryAddActivity extends AppCompatActivity {
     Connection connection;
     RecyclerView recyclerViewInventoryAdd;
     ArrayList<BookingDetailModel> bookingDetalList;
+    InventoryAddAdapter inventoryAddAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +37,38 @@ public class InventoryAddActivity extends AppCompatActivity {
         setContentView(R.layout.activity_inventory_add);
 
         bookingDetalList = new ArrayList<>();
-        bookingDetalList.add(new BookingDetailModel(1, 1, 1, 10));
-        bookingDetalList.add(new BookingDetailModel(1, 1, 2, 20));
 
         recyclerViewInventoryAdd = findViewById(R.id.recyclerViewInventoryAdd);
         Button btnBack = findViewById(R.id.btnBackBookingAdd);
+
+        //Находим переданные данные из другого окна
+        Bundle arguments = getIntent().getExtras();
+        String startDateString = "";
+        //Проверям, не пусты ли эти данные
+        if(arguments!=null) {
+            bookingDetalList = (ArrayList<BookingDetailModel>) arguments.getSerializable(BookingDetailModel.class.getSimpleName());
+            //Получаем данные о выбранном инвентаре
+            startDateString = arguments.getString("START_DATE");
+            downloadDataToRecyclerview(startDateString);
+        }
+
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setResult(RESULT_CANCELED, getIntent());
+                bookingDetalList = inventoryAddAdapter.getBookingDetailList();
+                Intent intent = new Intent();
+                intent.putExtra(BookingDetailModel.class.getSimpleName(), bookingDetalList);
+                setResult(RESULT_OK,intent);
+
                 finish();
             }
         });
 
-        downloadDataToRecyclerview();
+
     }
 
-    private void downloadDataToRecyclerview(){
+    private void downloadDataToRecyclerview(String startDateString){
         ArrayList<InventoryModel> inventoryList = new ArrayList<>();
         ConnectionDatabase connectionSQL = new ConnectionDatabase();
 
@@ -64,11 +82,33 @@ public class InventoryAddActivity extends AppCompatActivity {
             */
             int user_id = 1;
 
+            /*
             String sqlQuery = "select i.Инвентарьid, t.Вид_инвентаряid, t.Вид, m.Модель_инвентаряid, m.Модель, i.Стоимость, n.Номер_инвентаряid, n.Количество " +
                     "from Инвентарь i, Вид_инвентаря t, Модель_инвентаря m, Номер_инвентаря n " +
                     "where i.Инвентарьid = n.Инвентарьid and i.Вид_инвентаряid=t.Вид_инвентаряid " +
-                    "and i.Модель_инвентаряid=m.Модель_инвентаряid";
+                    "and i.Модель_инвентаряid=m.Модель_инвентаряid";*/
 
+            String sqlQuery = "select i.Инвентарьid, \n" +
+                    "t.Вид_инвентаряid, \n" +
+                    "t.Вид, m.Модель_инвентаряid, \n" +
+                    "m.Модель, \n" +
+                    "i.Стоимость, \n" +
+                    "n.Номер_инвентаряid, \n" +
+                    "CASE WHEN  booking.Занятое_количество is null or booking.Занятое_количество=0  THEN n.Количество ELSE (n.Количество + booking.Занятое_количество) END as \"Количество на выбранную дату\"\n" +
+                    "\tfrom Инвентарь i, Вид_инвентаря t, Модель_инвентаря m, Номер_инвентаря n LEFT JOIN\n" +
+                    "\t(select Инвентарь.\"Инвентарьid\", SUM(Состав_заявки.Количество) AS Занятое_количество\n" +
+                    "\t\tFROM Инвентарь \n" +
+                    "\t\t\tJOIN Номер_инвентаря ON Инвентарь.Инвентарьid = Номер_инвентаря.Инвентарьid\n" +
+                    "\t\t\tJOIN Состав_заявки ON Номер_инвентаря.Номер_инвентаряid = Состав_заявки.Номер_инвентаряid\n" +
+                    "\t\t\tJOIN Заявка ON Состав_заявки.Заявкаid = Заявка.Заявкаid\n" +
+                    "\t\t\tJOIN Статус_бронирования ON Заявка.Статус_бронированияid = Статус_бронирования.Статус_бронированияid\n" +
+                    "\t\tWHERE Статус_бронирования.Статус IN ('Забронирован')\n" +
+                    "\t\t\tAND '"+startDateString+"' > Заявка.Дата_окончания\n" +
+                    "\t\tgroup by Инвентарь.\"Инвентарьid\") booking\n" +
+                    "\ton n.\"Инвентарьid\" = booking.\"Инвентарьid\"\n" +
+                    "\t\twhere i.Инвентарьid = n.Инвентарьid and i.Вид_инвентаряid=t.Вид_инвентаряid\n" +
+                    "\t\tand i.Модель_инвентаряid=m.Модель_инвентаряid\n" +
+                    "\t\tand (n.Количество>0 or (n.Количество + booking.Занятое_количество)>0)";
             Statement statement = null;
             try {
                 statement = connection.createStatement();
@@ -84,8 +124,8 @@ public class InventoryAddActivity extends AppCompatActivity {
                 Log.e("Error: ", e.getMessage());
             }
         }
-
+        inventoryAddAdapter = new InventoryAddAdapter(this, inventoryList, bookingDetalList, false);
         recyclerViewInventoryAdd.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewInventoryAdd.setAdapter(new InventoryAddAdapter(this, inventoryList, bookingDetalList, false));
+        recyclerViewInventoryAdd.setAdapter(inventoryAddAdapter);
     }
 }

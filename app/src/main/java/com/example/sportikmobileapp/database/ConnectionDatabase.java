@@ -14,7 +14,9 @@ public class ConnectionDatabase {
 
     @SuppressLint("New Api")
     public Connection connectionClass(){
-        String ip="192.168.0.174", port="5432", db="db_sportik2", username="postgres", password="12345";
+        //10.238.167.232
+        //192.168.43.57
+        String ip="192.168.43.57", port="5432", db="db_sportik3", username="postgres", password="12345";
 
         StrictMode.ThreadPolicy threadPolicy =
                 new StrictMode.ThreadPolicy.Builder().permitAll().build();

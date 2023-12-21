@@ -46,17 +46,5 @@ public class InventoryAddViewHolder extends RecyclerView.ViewHolder {
         btnCheck = item.findViewById(R.id.btnCheckItemInventoryAdd);
 
         imgLeft = item.findViewById(R.id.imgLeftItemInventoryAdd);
-
-        if(isBookingAddActivity){
-
-        }
-        //Кнопка Удаления инвентаря из списка бронирования
-        ImageButton btnDelete = item.findViewById(R.id.btnDeleteItemInventoryAdd);
-        btnDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
 }

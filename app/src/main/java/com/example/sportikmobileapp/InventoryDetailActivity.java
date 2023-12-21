@@ -40,38 +40,40 @@ public class InventoryDetailActivity extends AppCompatActivity {
         monthTextView = findViewById(R.id.month_text_view);
         gridView = findViewById(R.id.grid_view);
 
-
-
+        //Находим переданные данные из другого окна
         Bundle arguments = getIntent().getExtras();
         InventoryModel inventory;
+        //Проверям, не пусты ли эти данные
         if(arguments!=null){
-            //получение данных о выбранном инвентаре
+
+            //Получаем данные о выбранном инвентаре
             inventory = (InventoryModel) arguments.getSerializable(InventoryModel.class.getSimpleName());
             String _type = "Вид: " + inventory.getType().getName();
             String _model = "Модель: " + inventory.getModel().getName();
             String _cost = "Стоимость: " + inventory.getCost();
             String _count = "В наличии: " + inventory.getCount();
 
-            ////
+            ////Hashmap - список с ключом и его значением; ключ - это дата, значение - это количество инвентаря
             HashMap<String, Integer> _inventoryMap = (HashMap<String, Integer>) arguments.get("HASHMAP");
+
             // Создаем календарь и устанавливаем его на текущий месяц и год
             calendar = Calendar.getInstance();
             calendar.setTimeInMillis(System.currentTimeMillis());
             month = calendar.get(Calendar.MONTH) + 1; // Месяцы нумеруются с 0, поэтому прибавляем 1
             year = calendar.get(Calendar.YEAR);
+
             // Создаем наш адаптер и устанавливаем его для GridView
             adapter = new CustomCalendarAdapter(this, month, year, _inventoryMap);
             gridView.setAdapter(adapter);
+
             // Устанавливаем текст для TextView с названием месяца
             monthTextView.setText(getMonthName(month) + " " + year);
 
-
-            //заполнение данными
+            //Заполняем данными TextView
             txtType.setText(_type);
             txtModel.setText(_model);
             txtCost.setText(_cost);
             txtCount.setText(_count);
-
 
             // Устанавливаем слушатели для кнопок переключения месяцев
             prevButton.setOnClickListener(new View.OnClickListener() {
@@ -127,8 +129,6 @@ public class InventoryDetailActivity extends AppCompatActivity {
                     } else { // Иначе просто уменьшаем номер месяца на 1
                         month_current++;
                     }
-
-
 
                     if(year_today==year_current && month_current-3 == month_today)
                         return;

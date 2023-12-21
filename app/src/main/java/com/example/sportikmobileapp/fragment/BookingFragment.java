@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import com.example.sportikmobileapp.R;
 import com.example.sportikmobileapp.adapter.BookingAdapter;
 import com.example.sportikmobileapp.adapter.InventoryAdapter;
 import com.example.sportikmobileapp.database.ConnectionDatabase;
+import com.example.sportikmobileapp.database.booking.BookingDetailModel;
 import com.example.sportikmobileapp.database.booking.BookingModel;
 import com.example.sportikmobileapp.database.inventory.InventoryModel;
 import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
@@ -34,9 +36,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import javax.xml.transform.Result;
+
 public class BookingFragment extends Fragment {
     Connection connection;
     RecyclerView recyclerViewBooking;
+    ArrayList<BookingModel> bookingList;
+    BookingAdapter bookingAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -57,9 +63,20 @@ public class BookingFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Bundle arguments = data.getExtras();
+        if(resultCode==getActivity().RESULT_OK && arguments.getSerializable(BookingModel.class.getSimpleName())!=null){
+            BookingModel bookingModel = (BookingModel) arguments.getSerializable(BookingModel.class.getSimpleName());
+            bookingList.add(bookingModel);
+            bookingAdapter.notifyItemInserted(bookingList.size() - 1);
+            downloadDataToRecyclerview();
+        }
+    }
 
     private void downloadDataToRecyclerview(){
-        ArrayList<BookingModel> bookingList = new ArrayList<>();
+        bookingList = new ArrayList<>();
         ConnectionDatabase connectionSQL = new ConnectionDatabase();
 
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
@@ -74,7 +91,7 @@ public class BookingFragment extends Fragment {
 
             String sqlQuery = "select z.Заявкаid, z.Дата_начала, z.Дата_окончания,sb.Статус " +
                     "from Заявка z, Статус_бронирования sb  " +
-                    "where z.Статус_бронированияid = sb.Статус_бронированияid;";
+                    "where z.Статус_бронированияid = sb.Статус_бронированияid order by z.Дата_начала";
 
             Statement statement = null;
             try {
@@ -89,9 +106,9 @@ public class BookingFragment extends Fragment {
             }
         }
 
-
+        bookingAdapter = new BookingAdapter(getActivity(), bookingList);
         recyclerViewBooking.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerViewBooking.setAdapter(new BookingAdapter(getActivity(), bookingList));
+        recyclerViewBooking.setAdapter(bookingAdapter);
     }
 
 

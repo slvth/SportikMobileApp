@@ -2,8 +2,10 @@ package com.example.sportikmobileapp.database.booking;
 
 import com.example.sportikmobileapp.database.inventory.InventoryModel;
 
+import java.io.Serializable;
+
 //Состав заявки
-public class BookingDetailModel {
+public class BookingDetailModel implements Serializable {
     private int bookingDetailId; //ID состава заявки
     private int bookingId; //ID заявки
     private int inventoryId; //ID заявки

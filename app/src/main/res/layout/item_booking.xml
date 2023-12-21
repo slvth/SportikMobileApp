@@ -24,6 +24,12 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/txtBookingIdItemBooking"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="заявка №" />
 
             <TextView
                 android:id="@+id/txtDateStartItemBooking"
@@ -47,7 +53,7 @@
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/btnDeleteBooking"
+            android:id="@+id/btnCancelBooking"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:src="@android:drawable/ic_menu_delete" />
