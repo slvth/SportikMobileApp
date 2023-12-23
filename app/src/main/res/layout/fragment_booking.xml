@@ -1,26 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:layout_marginHorizontal="10dp"
     tools:context=".fragment.BookingFragment">
 
-    <Button
-        android:id="@+id/btnBooking"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Забронировать"
-        android:layout_marginTop="10dp"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewBooking"
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/item_booking"
-        android:scrollbars="none"
-        android:focusable="true"
-        android:clickable="true"/>
+        android:orientation="vertical">
 
-</LinearLayout>
+        <Button
+            android:id="@+id/btnBookingHistory"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="История бронирований"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBooking"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:scrollbars="none"
+            android:clipToPadding="false"
+            android:paddingBottom="80dp"
+            tools:listitem="@layout/item_booking"/>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp"/>
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnBooking"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:foreground="@drawable/plus"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

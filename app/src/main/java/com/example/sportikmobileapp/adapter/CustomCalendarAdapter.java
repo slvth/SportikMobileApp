@@ -1,30 +1,19 @@
 package com.example.sportikmobileapp.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.os.StrictMode;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.database.ConnectionDatabase;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
-import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
-import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
 
 // Создаем свой класс-адаптер, наследуясь от BaseAdapter
 public class CustomCalendarAdapter extends BaseAdapter {
@@ -49,7 +38,6 @@ public class CustomCalendarAdapter extends BaseAdapter {
         calendar = Calendar.getInstance();
         inflater = LayoutInflater.from(context);
         dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        inventoryMap = new HashMap<>(); // Инициализируем хэш-карту
         inventoryMap = _inventoryMap; // Инициализируем хэш-карту
 
         //populateInventoryMap(); // Заполняем хэш-карту данными из базы данных
@@ -191,10 +179,14 @@ public class CustomCalendarAdapter extends BaseAdapter {
             calendar.set(year, month - 1, day);
             // Форматируем дату в виде строки
             String date = dateFormat.format(calendar.getTime());
-            // Получаем количество инвентаря из хэш-карты по дате
-            int inventory = inventoryMap.get(date);
-            // Устанавливаем текст для инвентаря
-            inventoryTextView.setText(String.valueOf(inventory));
+            try {
+                // Получаем количество инвентаря из хэш-карты по дате
+                int inventory = inventoryMap.get(date);
+                // Устанавливаем текст для инвентаря
+                inventoryTextView.setText(String.valueOf(inventory));
+            }catch (Exception ex){
+                Toast.makeText(context, ex.getMessage(), Toast.LENGTH_SHORT).show();
+            }
         }
         // Возвращаем готовое представление
         return convertView;

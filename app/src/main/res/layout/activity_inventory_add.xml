@@ -6,30 +6,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    tools:context=".InventoryAddActivity">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    tools:context=".activity.InventoryAddActivity">
+    <Button
+        android:id="@+id/btnBackInventoryAdd"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/btnBackBookingAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Назад" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <Button
-            android:id="@+id/btnSaveBookingAdd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ГОТОВО" />
-    </LinearLayout>
+        android:text="Назад" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewInventoryAdd"

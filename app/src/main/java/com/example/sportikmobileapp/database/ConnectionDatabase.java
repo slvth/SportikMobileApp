@@ -14,27 +14,22 @@ public class ConnectionDatabase {
 
     @SuppressLint("New Api")
     public Connection connectionClass(){
-        //10.238.167.232
-        //192.168.43.57
-        String ip="192.168.43.57", port="5432", db="db_sportik3", username="postgres", password="12345";
+        //Параметры подключения к базе данных
+        String ip="192.168.43.57", port="5432", db="db_sportik4", username="postgres", password="12345";
 
-        StrictMode.ThreadPolicy threadPolicy =
-                new StrictMode.ThreadPolicy.Builder().permitAll().build();
-
+        StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);
         String connectURL = null;
+
         connection = null;
         try {
             Class.forName("org.postgresql.Driver");
             connectURL = "jdbc:postgresql://"+ip+":"+port+"/"+db;
-
             String finalConnectURL = connectURL;
-
             if(isConnectionValid(DriverManager.getConnection(finalConnectURL, username, password)))
                 connection = DriverManager.getConnection(finalConnectURL, username, password);
             else
                 connection = null;
-
         }
         catch (Exception e){
             Log.e("Error is ", e.getMessage());

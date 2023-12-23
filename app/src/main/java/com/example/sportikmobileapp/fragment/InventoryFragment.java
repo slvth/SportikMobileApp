@@ -13,13 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.adapter.BookingAdapter;
 import com.example.sportikmobileapp.adapter.InventoryAdapter;
 import com.example.sportikmobileapp.database.ConnectionDatabase;
-import com.example.sportikmobileapp.database.booking.BookingModel;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
-import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
-import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
+import com.example.sportikmobileapp.database.model.InventoryModel;
+import com.example.sportikmobileapp.database.model.ModelInventoryModel;
+import com.example.sportikmobileapp.database.model.TypeInventoryModel;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -54,7 +52,13 @@ public class InventoryFragment extends Fragment {
             */
             int user_id = 1;
 
-            String sqlQuery = "select i.Инвентарьid, t.Вид_инвентаряid, t.Вид, m.Модель_инвентаряid, m.Модель, i.Стоимость, n.Номер_инвентаряid, n.Количество " +
+            /*
+            String sqlQuery = "select i.Инвентарьid, t.Вид_инвентаряid, t.Вид, m.Модель_инвентаряid, m.Модель, i.Стоимость, n.Номер_инвентаряid, n.Количество" +
+                    "from Инвентарь i, Вид_инвентаря t, Модель_инвентаря m, Номер_инвентаря n " +
+                    "where i.Инвентарьid = n.Инвентарьid and i.Вид_инвентаряid=t.Вид_инвентаряid " +
+                    "and i.Модель_инвентаряid=m.Модель_инвентаряid";*/
+
+            String sqlQuery = "select i.Инвентарьid, t.Вид_инвентаряid, t.Вид, m.Модель_инвентаряid, m.Модель, i.Стоимость, n.Номер_инвентаряid, n.Количество, i.КартинкаURL, i.Описание " +
                     "from Инвентарь i, Вид_инвентаря t, Модель_инвентаря m, Номер_инвентаря n " +
                     "where i.Инвентарьid = n.Инвентарьid and i.Вид_инвентаряid=t.Вид_инвентаряid " +
                     "and i.Модель_инвентаряid=m.Модель_инвентаряid";
@@ -66,7 +70,12 @@ public class InventoryFragment extends Fragment {
                 while (set.next()){
                     TypeInventoryModel typeInventory = new TypeInventoryModel(set.getInt(2), set.getString(3));
                     ModelInventoryModel modelInventory = new ModelInventoryModel(set.getInt(4), set.getString(5));
-                    InventoryModel inventory = new InventoryModel(set.getInt(1), typeInventory, modelInventory, set.getFloat(6), set.getInt(7), set.getInt(8));
+                    //InventoryModel inventory = new InventoryModel(set.getInt(1), typeInventory, modelInventory, set.getFloat(6), set.getInt(7), set.getInt(8));
+                    InventoryModel inventory = new InventoryModel(
+                            set.getInt(1), typeInventory, modelInventory, set.getFloat(6),
+                            set.getInt(7), set.getInt(8), set.getString(9),
+                            set.getString(10)
+                    );
                     inventoryList.add(inventory);
                 }
                 connection.close();

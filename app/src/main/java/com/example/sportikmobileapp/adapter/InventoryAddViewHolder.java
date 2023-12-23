@@ -2,10 +2,7 @@ package com.example.sportikmobileapp.adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.media.Image;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,10 +10,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sportikmobileapp.InventoryDetailActivity;
 import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.database.booking.BookingDetailModel;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
+import com.example.sportikmobileapp.database.model.BookingDetailModel;
+import com.example.sportikmobileapp.database.model.InventoryModel;
 
 import java.util.ArrayList;
 
@@ -26,13 +22,7 @@ public class InventoryAddViewHolder extends RecyclerView.ViewHolder {
     ImageButton btnMinus, btnPlus, btnAdd, btnDelete, btnCheck;
     ImageView imgLeft;
 
-    public InventoryAddViewHolder(
-            @NonNull View item,
-            Context context,
-            ArrayList<InventoryModel> inventoryList,
-            ArrayList<BookingDetailModel> bookingDetailList,
-            Boolean isBookingAddActivity
-    ) {
+    public InventoryAddViewHolder(@NonNull View item) {
         super(item);
         txtType = item.findViewById(R.id.txtTypeItemInventoryAdd); //Вид инвентаря
         txtModel = item.findViewById(R.id.txtModelItemInventoryAdd); //Модель инвентаря

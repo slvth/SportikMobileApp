@@ -5,7 +5,6 @@ import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -13,13 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sportikmobileapp.R;
-import com.example.sportikmobileapp.database.booking.BookingDetailModel;
-import com.example.sportikmobileapp.database.booking.BookingModel;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
+import com.example.sportikmobileapp.database.model.BookingDetailModel;
+import com.example.sportikmobileapp.database.model.InventoryModel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHolder>{
     Context context;
@@ -60,13 +58,7 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
     @NonNull
     @Override
     public InventoryAddViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new InventoryAddViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.item_inventory_add, parent,false),
-                context,
-                inventoryList,
-                bookingDetailList,
-                isBookingAddActivity
-        );
+        return new InventoryAddViewHolder(LayoutInflater.from(context).inflate(R.layout.item_inventory_add, parent, false));
     }
 
     @Override
@@ -87,6 +79,9 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
             holder.txtModel.setText(modelInventory);
             holder.txtCost.setText(costInventory);
             holder.txtCount.setText(countSelectInventoryString);
+            Glide.with(context)
+                    .load(bookingDetailList.get(position).getInventory().getPictureURL())
+                    .into(holder.imgLeft);
 
             holder.btnAdd.setVisibility(View.GONE);
             holder.btnCheck.setVisibility(View.GONE);
@@ -180,6 +175,9 @@ public class InventoryAddAdapter extends RecyclerView.Adapter<InventoryAddViewHo
             holder.txtType.setText(typeInventory);
             holder.txtModel.setText(modelInventory);
             holder.txtCost.setText(costInventory);
+            Glide.with(context)
+                    .load(inventoryList.get(position).getPictureURL())
+                    .into(holder.imgLeft);
 
             //обработчик нажатия на добавление инвентаря
             holder.btnAdd.setOnClickListener(new View.OnClickListener() {

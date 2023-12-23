@@ -187,28 +187,55 @@
                             android:hint=""
                             android:inputType="text" />
                     </LinearLayout>
-                    <LinearLayout
+                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="10dp"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:text="Почта:"
+                        android:textSize="20sp" />
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Почта:"
-                            android:textSize="20sp" />
+                    <EditText
+                        android:id="@+id/edtAccountEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:backgroundTint="@color/green"
+                        android:hint=""
+                        android:inputType="textEmailAddress" />
+                </LinearLayout>
 
-                        <EditText
-                            android:id="@+id/edtAccountEmail"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.6"
-                            android:backgroundTint="@color/green"
-                            android:hint=""
-                            android:inputType="text" />
-                    </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Телефон:"
+                        android:textSize="18sp" />
+
+                    <com.santalu.maskara.widget.MaskEditText
+                        android:id="@+id/edtAccountPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/blue2"
+                        android:hint="+7(___)-___-__-__"
+                        android:inputType="number"
+                        app:mask="+7(___)-___-__-__"
+                        app:maskCharacter="_"
+                        app:maskStyle="completable" />
+
 
                 </LinearLayout>
 

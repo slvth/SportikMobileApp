@@ -16,16 +16,10 @@
         android:theme="@style/Theme.SportikMobileApp"
         tools:targetApi="31">
         <activity
-            android:name=".InventoryAddActivity"
+            android:name=".activity.BookingHistoryActivity"
             android:exported="false" />
         <activity
-            android:name=".BookingAddActivity"
-            android:exported="false" />
-        <activity
-            android:name=".InventoryDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+            android:name=".activity.SplashScreenActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +27,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.InventoryAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BookingAddActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.InventoryDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

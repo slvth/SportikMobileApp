@@ -8,125 +8,166 @@
     android:padding="15dp"
     android:gravity="center"
     android:background="@color/grey"
-    tools:context=".InventoryDetailActivity">
+    tools:context=".activity.InventoryDetailActivity">
 
-    <TextView
-        android:id="@+id/txtTypeInventoryDetail"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Вид инвентаря"
-        android:textSize="20dp"
-        android:layout_marginBottom="15dp"/>
-    <TextView
-        android:id="@+id/txtModelInventoryDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Модель инвентаря"
-        android:textSize="20dp"
-        android:layout_marginBottom="15dp"/>
-    <TextView
-        android:id="@+id/txtCostInventoryDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Цена"
-        android:textSize="20dp"
-        android:layout_marginBottom="15dp"/>
-    <TextView
-        android:id="@+id/txtCountInventoryDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="В наличии: "
-        android:textSize="20dp"
-        android:layout_marginBottom="15dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/prev_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="назад" />
+            <ImageButton
+                android:id="@+id/btnBackInventoryDetail"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/back"
+                android:background="@color/grey"
+                android:scaleType="centerInside"/>
 
-        <TextView
-            android:id="@+id/month_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="20dp"
-            android:text="Март 2023" />
+            <ImageView
+                android:id="@+id/imgInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:background="@color/white"
+                android:src="@drawable/inventory"
+                android:paddingVertical="5dp"
+                android:layout_marginTop="15dp"/>
 
-        <Button
-            android:id="@+id/next_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="далее" />
+            <TextView
+                android:id="@+id/txtTypeInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Вид инвентаря"
+                android:textSize="20dp"
+                android:layout_marginVertical="15dp"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/txtModelInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Модель инвентаря"
+                android:textSize="20dp"
+                android:layout_marginBottom="15dp"/>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/txtCostInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Цена"
+                android:textSize="20dp"
+                android:layout_marginBottom="15dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Пн" />
+            <TextView
+                android:id="@+id/txtCountInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="В наличии: "
+                android:textSize="20dp"
+                android:layout_marginBottom="15dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Вт" />
+            <TextView
+                android:id="@+id/txtDescInventoryDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:text="Описание:"
+                android:layout_marginBottom="15dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Ср" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Чт" />
+                <Button
+                    android:id="@+id/prev_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="назад" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Пт" />
+                <TextView
+                    android:id="@+id/month_text_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:textSize="20dp"
+                    android:text="Март 2023" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Сб" />
+                <Button
+                    android:id="@+id/next_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="далее" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="Вс" />
+            </LinearLayout>
 
-    </TableRow>
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <GridView
-        android:id="@+id/grid_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:numColumns="7"
-        android:firstDayOfWeek="2" /> <!-- Указываем, что неделя начинается с понедельника -->
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Пн" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Вт" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Ср" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Чт" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Пт" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Сб" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="Вс" />
+
+            </TableRow>
+
+            <GridView
+                android:id="@+id/grid_view"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:numColumns="7"
+                android:firstDayOfWeek="2" /> <!-- Указываем, что неделя начинается с понедельника -->
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
 
 </LinearLayout>

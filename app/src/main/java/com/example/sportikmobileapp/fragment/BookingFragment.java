@@ -17,26 +17,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.sportikmobileapp.BookingAddActivity;
+import com.example.sportikmobileapp.activity.BookingAddActivity;
 import com.example.sportikmobileapp.R;
+import com.example.sportikmobileapp.activity.BookingHistoryActivity;
 import com.example.sportikmobileapp.adapter.BookingAdapter;
-import com.example.sportikmobileapp.adapter.InventoryAdapter;
 import com.example.sportikmobileapp.database.ConnectionDatabase;
-import com.example.sportikmobileapp.database.booking.BookingDetailModel;
-import com.example.sportikmobileapp.database.booking.BookingModel;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
-import com.example.sportikmobileapp.database.inventory.ModelInventoryModel;
-import com.example.sportikmobileapp.database.inventory.TypeInventoryModel;
+import com.example.sportikmobileapp.database.model.BookingModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.HashMap;
-
-import javax.xml.transform.Result;
 
 public class BookingFragment extends Fragment {
     Connection connection;
@@ -50,12 +42,21 @@ public class BookingFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_booking, container, false);
 
         recyclerViewBooking = view.findViewById(R.id.recyclerViewBooking);
-        Button btnBooking = view.findViewById(R.id.btnBooking);
+        FloatingActionButton btnBooking = view.findViewById(R.id.btnBooking);
+        Button btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         btnBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), BookingAddActivity.class);
                 startActivityForResult(intent, 100);
+            }
+        });
+
+        btnBookingHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), BookingHistoryActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -66,12 +67,14 @@ public class BookingFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Bundle arguments = data.getExtras();
-        if(resultCode==getActivity().RESULT_OK && arguments.getSerializable(BookingModel.class.getSimpleName())!=null){
-            BookingModel bookingModel = (BookingModel) arguments.getSerializable(BookingModel.class.getSimpleName());
-            bookingList.add(bookingModel);
-            bookingAdapter.notifyItemInserted(bookingList.size() - 1);
-            downloadDataToRecyclerview();
+        if(resultCode==getActivity().RESULT_OK){
+            Bundle arguments = data.getExtras();
+            if(arguments.getSerializable(BookingModel.class.getSimpleName())!=null) {
+                BookingModel bookingModel = (BookingModel) arguments.getSerializable(BookingModel.class.getSimpleName());
+                bookingList.add(bookingModel);
+                bookingAdapter.notifyItemInserted(bookingList.size() - 1);
+                downloadDataToRecyclerview();
+            }
         }
     }
 
@@ -83,15 +86,18 @@ public class BookingFragment extends Fragment {
         StrictMode.setThreadPolicy(policy);
         connection = connectionSQL.connectionClass();
         if(connection != null){
-            /*
+
             SharedPreferences sharedPref = getActivity().getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE);
             int user_id = sharedPref.getInt(getString(R.string.pref_id), 0);
-            */
-            int user_id = 1;
+
+            //int user_id = 1;
 
             String sqlQuery = "select z.Заявкаid, z.Дата_начала, z.Дата_окончания,sb.Статус " +
                     "from Заявка z, Статус_бронирования sb  " +
-                    "where z.Статус_бронированияid = sb.Статус_бронированияid order by z.Дата_начала";
+                    "where z.Статус_бронированияid = sb.Статус_бронированияid and " +
+                    "z.ПользовательID = " +user_id+ " and " +
+                    "sb.Статус in ('Подан', 'Забронирован', 'Выдан') "+
+                    "order by z.Дата_начала";
 
             Statement statement = null;
             try {

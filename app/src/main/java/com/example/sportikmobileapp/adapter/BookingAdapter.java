@@ -2,33 +2,25 @@ package com.example.sportikmobileapp.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sportikmobileapp.BookingAddActivity;
 import com.example.sportikmobileapp.R;
 import com.example.sportikmobileapp.database.ConnectionDatabase;
-import com.example.sportikmobileapp.database.booking.BookingDetailModel;
-import com.example.sportikmobileapp.database.booking.BookingModel;
-import com.example.sportikmobileapp.database.inventory.InventoryModel;
+import com.example.sportikmobileapp.database.model.BookingModel;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 public class BookingAdapter extends RecyclerView.Adapter<BookingViewHolder>{
@@ -72,7 +64,12 @@ public class BookingAdapter extends RecyclerView.Adapter<BookingViewHolder>{
         holder.txtDateEndItemBooking.setText(dateEndString);
         holder.txtStatusItemBooking.setText(status);
 
+        //Скрываем кнопку "Отмена", если статус "Отменен", "Выдан" или "Выполнен"
         if(bookingList.get(position).getStatus().equals("Отменен") || bookingList.get(position).getStatus_id()==2)
+            holder.btnCancelBooking.setVisibility(View.GONE);
+        if(bookingList.get(position).getStatus().equals("Выдан") || bookingList.get(position).getStatus_id()==5)
+            holder.btnCancelBooking.setVisibility(View.GONE);
+        if(bookingList.get(position).getStatus().equals("Выполнен") || bookingList.get(position).getStatus_id()==3)
             holder.btnCancelBooking.setVisibility(View.GONE);
 
         // Отмена бронирования
