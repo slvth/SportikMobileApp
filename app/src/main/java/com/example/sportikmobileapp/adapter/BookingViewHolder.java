@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportikmobileapp.R;
@@ -13,6 +14,7 @@ import com.example.sportikmobileapp.R;
 public class BookingViewHolder extends RecyclerView.ViewHolder{
     TextView txtBookingIdItemBooking, txtDateStartItemBooking, txtDateEndItemBooking, txtStatusItemBooking;
     ImageButton btnCancelBooking;
+    AppCompatButton btnQRCodeItemBooking;
 
     public BookingViewHolder(@NonNull View item) {
         super(item);
@@ -21,5 +23,6 @@ public class BookingViewHolder extends RecyclerView.ViewHolder{
         txtDateEndItemBooking = item.findViewById(R.id.txtDateEndItemBooking);
         txtStatusItemBooking = item.findViewById(R.id.txtStatusItemBooking);
         btnCancelBooking = item.findViewById(R.id.btnCancelBooking);
+        btnQRCodeItemBooking = item.findViewById(R.id.btnQRCodeItemBooking);
     }
 }
