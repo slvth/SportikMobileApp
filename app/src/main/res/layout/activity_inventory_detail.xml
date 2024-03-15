@@ -7,7 +7,6 @@
     android:orientation="vertical"
     android:padding="15dp"
     android:gravity="center"
-    android:background="@color/grey"
     tools:context=".activity.InventoryDetailActivity">
 
     <androidx.core.widget.NestedScrollView
@@ -24,24 +23,30 @@
                 android:id="@+id/btnBackInventoryDetail"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/back"
-                android:background="@color/grey"
+                android:src="@drawable/back2"
+                android:background="@color/white"
                 android:scaleType="centerInside"/>
 
-            <ImageView
-                android:id="@+id/imgInventoryDetail"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
-                android:background="@color/white"
-                android:src="@drawable/inventory"
-                android:paddingVertical="5dp"
-                android:layout_marginTop="15dp"/>
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@color/grey"
+                app:cardCornerRadius="30dp">
+                <ImageView
+                    android:id="@+id/imgInventoryDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp"
+                    android:background="@color/white"
+                    android:src="@drawable/inventory"/>
+            </androidx.cardview.widget.CardView>
+
 
             <TextView
                 android:id="@+id/txtTypeInventoryDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Вид инвентаря"
+                android:text="Вид:"
                 android:textSize="20dp"
                 android:layout_marginVertical="15dp"/>
 
@@ -49,7 +54,7 @@
                 android:id="@+id/txtModelInventoryDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Модель инвентаря"
+                android:text="Модель:"
                 android:textSize="20dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -57,7 +62,7 @@
                 android:id="@+id/txtCostInventoryDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Цена"
+                android:text="Стоимость:"
                 android:textSize="20dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -65,7 +70,7 @@
                 android:id="@+id/txtCountInventoryDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="В наличии: "
+                android:text="В наличии на сегодняшний день: "
                 android:textSize="20dp"
                 android:layout_marginBottom="15dp"/>
 
@@ -82,10 +87,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/prev_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingHorizontal="20dp"
+                    android:background="@drawable/rounded_corner"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:text="назад" />
 
                 <TextView
@@ -97,10 +107,15 @@
                     android:textSize="20dp"
                     android:text="Март 2023" />
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/next_button"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40dp"
+                    android:paddingHorizontal="20dp"
+                    android:background="@drawable/rounded_corner"
+                    android:layout_gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
                     android:text="далее" />
 
             </LinearLayout>
@@ -164,6 +179,7 @@
                 android:id="@+id/grid_view"
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
+                android:background="@color/green_light"
                 android:numColumns="7"
                 android:firstDayOfWeek="2" /> <!-- Указываем, что неделя начинается с понедельника -->
         </LinearLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="15dp"
-    android:background="@color/grey"
     tools:context=".activity.BookingHistoryActivity">
 
     <LinearLayout
@@ -17,16 +16,16 @@
             android:id="@+id/btnBackBookingHistory"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/back"
-            android:background="@color/grey"
+            android:src="@drawable/back2"
+            android:background="@color/white"
             android:scaleType="centerInside"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:text="История бронирований"
-            android:textSize="20dp"
-            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
             android:gravity="center_vertical"
             android:layout_marginStart="10dp"/>
     </LinearLayout>

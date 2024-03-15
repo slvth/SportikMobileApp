@@ -1,6 +1,7 @@
 package com.example.sportikmobileapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -21,10 +22,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RegistrationActivity extends AppCompatActivity {
-    Connection connection;
+Connection connection;
     LinearLayout linearStep1, linearStep2;
     TextInputEditText edtLogin, edtPassword, edtSurname, edtName, edtPatronymic, edtEmail, edtPhone, edtPassport;
-    Button btnNextStep, btnRegistration;
+    AppCompatButton btnNextStep, btnRegistration;
     ImageButton imgClose, imgBack;
 
     @Override

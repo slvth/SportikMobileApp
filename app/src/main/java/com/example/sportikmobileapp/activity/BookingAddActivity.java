@@ -3,6 +3,7 @@ package com.example.sportikmobileapp.activity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.util.Pair;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,10 +48,10 @@ public class BookingAddActivity extends AppCompatActivity {
     RecyclerView recyclerViewBookingAdd;
     ArrayList<BookingDetailModel> bookingDetalList;
 
-    Button btnBack, btnOpenInventoryAdd, btnSaveBookingAdd;
+    AppCompatButton btnOpenInventoryAdd, btnSaveBookingAdd;
     TextView txtStartBookingAdd, txtTotalSumBookingAdd;
-    ImageButton btnDate;
-    EditText edtCoundDay;
+    ImageButton btnDate, btnBack;
+    //EditText edtCoundDay;
     Long startDate, endDate; //Начало бронирования, миллисекунды
     int countDay;
     Float totalSum;
@@ -67,7 +68,7 @@ public class BookingAddActivity extends AppCompatActivity {
         btnOpenInventoryAdd = findViewById(R.id.btnOpenInventoryAdd);
         btnSaveBookingAdd = findViewById(R.id.btnSaveBookingAdd);
         btnDate = findViewById(R.id.btnDateBookingAdd);
-        edtCoundDay= findViewById(R.id.edtCoundDayBookingAdd);
+        //edtCoundDay= findViewById(R.id.edtCoundDayBookingAdd);
 
         defaultValues();
 
@@ -140,7 +141,7 @@ public class BookingAddActivity extends AppCompatActivity {
         bookingDetalList = new ArrayList<>();
         totalSum = 0f;
         countDay = 0;
-        edtCoundDay.setText(String.valueOf(countDay));
+        //edtCoundDay.setText(String.valueOf(countDay));
     }
 
     @Override
@@ -256,13 +257,13 @@ public class BookingAddActivity extends AppCompatActivity {
             String endDateString = sdf.format(new Date(endDate));
 
             // Создание строки диапазона дат
-            String selectedDateRange = "Начало: "+startDateString + "\nОкончание: " + endDateString;
+            String selectedDateRange = "Начало: "+startDateString + "\nКонец: " + endDateString;
             countDay = (int) (TimeUnit.MILLISECONDS.toDays(endDate - startDate) + 1);
             String countDayString = String.valueOf(countDay); //прибавление +1, чтобы он учитывал и текущий день
 
             // Отображение выбранного диапазона дат в TextView
             txtStartBookingAdd.setText(selectedDateRange);
-            edtCoundDay.setText(countDayString);
+            //edtCoundDay.setText(countDayString);
 
             downloadDataToRecyclerview();
         });

@@ -1,6 +1,7 @@
 package com.example.sportikmobileapp.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
 import android.view.View;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 
 public class InventoryDetailActivity extends AppCompatActivity {
-    private Button prevButton, nextButton;
+    private AppCompatButton prevButton, nextButton;
     private ImageButton btnBack;
     private TextView monthTextView;
     private GridView gridView;
@@ -64,7 +65,7 @@ public class InventoryDetailActivity extends AppCompatActivity {
             String _type = "Вид: " + inventory.getType().getName();
             String _model = "Модель: " + inventory.getModel().getName();
             String _cost = "Стоимость: " + inventory.getCost();
-            String _count = "В наличии: " + inventory.getCount();
+            String _count = "В наличии на сегодняшний день: " + inventory.getCount();
             String _desc = "Описание: \n" + inventory.getDesc();
             //Заполняем данными TextView, ImageView
             txtType.setText(_type);

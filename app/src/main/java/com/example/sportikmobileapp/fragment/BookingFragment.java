@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,6 +38,7 @@ public class BookingFragment extends Fragment {
     RecyclerView recyclerViewBooking;
     ArrayList<BookingModel> bookingList;
     BookingAdapter bookingAdapter;
+    AppCompatButton btnBookingHistory;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +47,7 @@ public class BookingFragment extends Fragment {
 
         recyclerViewBooking = view.findViewById(R.id.recyclerViewBooking);
         FloatingActionButton btnBooking = view.findViewById(R.id.btnBooking);
-        Button btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
+        btnBookingHistory = view.findViewById(R.id.btnBookingHistory);
         btnBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

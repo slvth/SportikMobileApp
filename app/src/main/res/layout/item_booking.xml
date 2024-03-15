@@ -4,23 +4,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="5dp"
+    app:cardCornerRadius="10dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:background="@color/grey2"
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             android:padding="10dp">
-
-            <ImageView
-                android:layout_width="60dp"
-                android:layout_height="70dp"
-                app:srcCompat="@drawable/note" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -33,34 +30,44 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="заявка №" />
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:text="№ заявки" />
 
                 <TextView
                     android:id="@+id/txtDateStartItemBooking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Начало:" />
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:text="Дата начала:" />
 
                 <TextView
                     android:id="@+id/txtDateEndItemBooking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Конец:" />
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:text="Дата окончания:" />
                 <TextView
                     android:id="@+id/txtStatusItemBooking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
                     android:text="Статус:" />
             </LinearLayout>
 
             <ImageButton
                 android:id="@+id/btnCancelBooking"
-                android:layout_width="50dp"
+                android:layout_width="64dp"
                 android:layout_height="match_parent"
-                android:src="@android:drawable/ic_menu_delete" />
+                app:rippleColor="@android:color/transparent"
+                android:src="@drawable/delete2" />
         </LinearLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -69,6 +76,7 @@
             android:layout_height="wrap_content"
             android:text="QR-КОД ДЛЯ ВЫДАЧИ"
             android:textColor="@color/white"
+
             android:backgroundTint="@color/green2"/>
 
     </LinearLayout>

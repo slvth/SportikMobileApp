@@ -13,11 +13,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnBookingHistory"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_height="40dp"
+            android:layout_marginVertical="15dp"
+            android:paddingHorizontal="20dp"
+            android:background="@drawable/rounded_corner"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="16sp"
             android:text="История бронирований"/>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -25,11 +30,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clickable="true"
-            android:focusable="true"
-            android:scrollbars="none"
             android:clipToPadding="false"
+            android:focusable="true"
             android:paddingBottom="80dp"
-            tools:listitem="@layout/item_booking"/>
+            android:scrollbars="none"
+            tools:listitem="@layout/item_booking" />
 
         <Space
             android:layout_width="match_parent"
@@ -42,7 +47,7 @@
         android:layout_height="60dp"
         android:layout_gravity="end|bottom"
         android:layout_margin="16dp"
-        android:foreground="@drawable/plus"
+        android:foreground="@drawable/plus2"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout" />
 

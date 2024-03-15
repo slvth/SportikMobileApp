@@ -7,11 +7,14 @@
     android:orientation="vertical"
     android:padding="15dp"
     tools:context=".activity.InventoryAddActivity">
-    <Button
+
+    <ImageButton
         android:id="@+id/btnBackInventoryAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Назад" />
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/back2"
+        android:background="@color/white"
+        android:scaleType="centerInside"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewInventoryAdd"

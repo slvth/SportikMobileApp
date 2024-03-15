@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.sportikmobileapp.activity.InventoryDetailActivity;
@@ -28,10 +29,13 @@ public class InventoryViewHolder extends RecyclerView.ViewHolder {
     TextView txtTypeItemInventory, txtModelItemInventory;
     ImageView imgItemInventory;
 
+    AppCompatButton btnItemInventory;
+
     public InventoryViewHolder(@NonNull View item) {
         super(item);
         txtTypeItemInventory = item.findViewById(R.id.txtTypeItemInventory);
         txtModelItemInventory = item.findViewById(R.id.txtModelItemInventory);
         imgItemInventory = item.findViewById(R.id.imgItemInventory);
+        btnItemInventory = item.findViewById(R.id.btnItemInventory);
     }
 }

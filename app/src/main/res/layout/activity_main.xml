@@ -11,7 +11,6 @@
         android:id="@+id/containerFrame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="@color/grey"
         android:layout_weight="1">
     </FrameLayout>
 
@@ -19,7 +18,7 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green2"
+        android:background="@color/green_light"
         app:menu="@menu/bottom_nav_menu"/>
 
 </LinearLayout>

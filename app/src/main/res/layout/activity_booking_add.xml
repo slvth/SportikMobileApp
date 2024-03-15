@@ -1,117 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingVertical="15dp"
-    android:paddingHorizontal="20dp"
-    android:background="@color/grey"
+
     tools:context=".activity.BookingAddActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnBackBookingAdd"
-            android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="15dp"
+        android:paddingHorizontal="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Назад"/>
-        <Space
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btnBackBookingAdd"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/back2"
+                android:background="@color/white"
+                android:scaleType="centerInside"/>
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSaveBookingAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/rounded_corner"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Забронировать"/>
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"/>
-        <Button
-            android:id="@+id/btnSaveBookingAdd"
-            android:layout_width="wrap_content"
+            android:layout_marginTop="20dp"
+            app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey2"
+                android:padding="15dp"
+                android:orientation="horizontal">
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:text="Дата бронирования:"/>
+
+                    <TextView
+                        android:id="@+id/txtStartBookingAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/black"
+                        android:text="не выбрана"
+                        android:textSize="16dp"/>
+                </LinearLayout>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="15dp">
+
+                    <ImageButton
+                        android:id="@+id/btnDateBookingAdd"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:scaleType="center"
+                        android:background="@color/grey3"
+                        android:src="@drawable/date2" />
+                </androidx.cardview.widget.CardView>
+
+
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Забронировать"/>
+            android:orientation="horizontal"
+            android:layout_marginVertical="15dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Инвентарь:"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="20dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnOpenInventoryAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:paddingHorizontal="20dp"
+                android:background="@drawable/rounded_corner"
+                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:text="Добавить инвентарь"/>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewBookingAdd"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:listitem="@layout/item_inventory_add" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:textSize="18dp"
-        android:text="Дата бронирования:"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:orientation="horizontal">
+        android:layout_height="65dp"
+        android:background="@color/green_light"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingStart="15dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
-            android:id="@+id/txtStartBookingAdd"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:text="не выбрана"
+            android:id="@+id/txtTotalSumBookingAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Итого: .......... руб"
             android:textSize="20dp"
-            android:textStyle="bold" />
-
-        <ImageButton
-            android:id="@+id/btnDateBookingAdd"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
-            android:scaleType="center"
-            android:src="@drawable/date" />
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:layout_editor_absoluteX="15dp" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Срок бронирования, день:"
-            android:textSize="20dp"/>
-
-        <EditText
-            android:id="@+id/edtCoundDayBookingAdd"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="0"
-            android:enabled="false"
-            android:gravity="center"
-            android:maxLength="5"
-            android:inputType="number"/>
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Выберите инвентарь:"
-        android:textSize="20dp"/>
-
-    <Button
-        android:id="@+id/btnOpenInventoryAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Добавить инвентарь"/>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewBookingAdd"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/item_inventory_add"/>
-
-    <TextView
-        android:id="@+id/txtTotalSumBookingAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="ИТОГО:  **** руб"
-        android:textSize="25dp"
-        android:textStyle="bold"
-        android:layout_marginTop="10dp"/>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

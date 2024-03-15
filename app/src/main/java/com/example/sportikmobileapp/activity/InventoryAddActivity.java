@@ -10,6 +10,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.example.sportikmobileapp.R;
 import com.example.sportikmobileapp.adapter.InventoryAddAdapter;
@@ -30,6 +31,8 @@ public class InventoryAddActivity extends AppCompatActivity {
     ArrayList<BookingDetailModel> bookingDetalList;
     InventoryAddAdapter inventoryAddAdapter;
 
+    ImageButton btnBack;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,7 @@ public class InventoryAddActivity extends AppCompatActivity {
         bookingDetalList = new ArrayList<>();
 
         recyclerViewInventoryAdd = findViewById(R.id.recyclerViewInventoryAdd);
-        Button btnBack = findViewById(R.id.btnBackInventoryAdd);
+        btnBack = findViewById(R.id.btnBackInventoryAdd);
 
         //Находим переданные данные из другого окна
         Bundle arguments = getIntent().getExtras();

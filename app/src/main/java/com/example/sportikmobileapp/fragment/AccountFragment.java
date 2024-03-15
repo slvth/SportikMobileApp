@@ -9,6 +9,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import android.transition.Fade;
@@ -41,7 +42,7 @@ public class AccountFragment extends Fragment {
     TextView txtUserFIO, txtUserID;
     MaskEditText edtAccountPhone,edtAccountPassport;
     EditText edtAccountSurname, edtAccountName, edtAccountMiddleName, edtAccountEmail;
-    Button btnExitAccount, btnEditAccount, btnAccountCancel, btnAccountSave;
+    AppCompatButton btnExitAccount, btnEditAccount, btnAccountCancel, btnAccountSave;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -63,7 +63,7 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryViewHolder>{
         inventoryMap= new HashMap<>();
 
         //обработка нажатия на отдельный инвентарь
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.btnItemInventory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //присваиваем дефолтные значения
@@ -81,7 +81,6 @@ public class InventoryAdapter extends RecyclerView.Adapter<InventoryViewHolder>{
                 intent.putExtra(InventoryModel.class.getSimpleName(), inventoryList.get(position));
                 intent.putExtra("HASHMAP", inventoryMap);
                 context.startActivity(intent);
-
             }
         });
     }

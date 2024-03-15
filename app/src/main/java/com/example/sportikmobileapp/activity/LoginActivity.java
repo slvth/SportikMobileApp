@@ -2,6 +2,7 @@ package com.example.sportikmobileapp.activity;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Context;
 import android.content.Intent;
@@ -27,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText edtLogin, edtPassword;
     TextView txtRegistration;
 
-    Button btnLogin;
+    AppCompatButton btnLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
