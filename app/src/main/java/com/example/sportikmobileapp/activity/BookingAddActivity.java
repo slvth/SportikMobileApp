@@ -17,6 +17,7 @@ import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,8 +50,9 @@ public class BookingAddActivity extends AppCompatActivity {
     ArrayList<BookingDetailModel> bookingDetalList;
 
     AppCompatButton btnOpenInventoryAdd, btnSaveBookingAdd;
-    TextView txtStartBookingAdd, txtTotalSumBookingAdd;
+    TextView txtStartBookingAdd, txtTotalSumBookingAdd, txtAgreement;
     ImageButton btnDate, btnBack;
+    CheckBox checkBoxAgreement;
     //EditText edtCoundDay;
     Long startDate, endDate; //Начало бронирования, миллисекунды
     int countDay;
@@ -69,6 +71,8 @@ public class BookingAddActivity extends AppCompatActivity {
         btnSaveBookingAdd = findViewById(R.id.btnSaveBookingAdd);
         btnDate = findViewById(R.id.btnDateBookingAdd);
         //edtCoundDay= findViewById(R.id.edtCoundDayBookingAdd);
+        checkBoxAgreement = findViewById(R.id.checkBoxAgreement);
+        txtAgreement = findViewById(R.id.txtAgreement);
 
         defaultValues();
 
@@ -178,6 +182,10 @@ public class BookingAddActivity extends AppCompatActivity {
     private void saveBooking(){
         if(bookingDetalList.size()==0 || bookingDetalList.isEmpty() || startDate==null || endDate==null){
             Toast.makeText(this, "Заполните все данные!", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if(!checkBoxAgreement.isChecked()){
+            Toast.makeText(this, "Примите соглашение!", Toast.LENGTH_SHORT).show();
             return;
         }
         ConnectionDatabase connectionSQL = new ConnectionDatabase();

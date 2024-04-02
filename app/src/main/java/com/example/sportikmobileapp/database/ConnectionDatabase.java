@@ -19,7 +19,7 @@ public class ConnectionDatabase {
         //10.238.167.232
         //192.168.43.57
         //10.238.167.129
-        String ip="10.238.167.129", port="5432", db="db_sportik4", username="postgres", password="12345";
+        String ip="10.238.167.253", port="5432", db="db_sportik4", username="postgres", password="12345";
 
         StrictMode.ThreadPolicy threadPolicy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(threadPolicy);

@@ -13,6 +13,7 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sportikmobileapp.fragment.AboutUsFragment;
 import com.example.sportikmobileapp.fragment.AccountFragment;
 import com.example.sportikmobileapp.fragment.BookingFragment;
 import com.example.sportikmobileapp.fragment.InventoryFragment;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     InventoryFragment inventoryFragment = new InventoryFragment();
     BookingFragment bookingFragment = new BookingFragment();
     AccountFragment accountFragment = new AccountFragment();
+    AboutUsFragment aboutUsFragment = new AboutUsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     case R.id.account:
                         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrame, accountFragment).commit();
+                        return true;
+                    case R.id.about_us:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.containerFrame, aboutUsFragment).commit();
                         return true;
                 }
                 return false;
