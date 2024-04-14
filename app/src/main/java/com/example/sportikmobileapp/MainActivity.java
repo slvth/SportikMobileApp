@@ -1,8 +1,11 @@
 package com.example.sportikmobileapp;
 
 
+import android.app.ActivityManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -11,13 +14,18 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.sportikmobileapp.database.notification.MyForegroundService;
+import com.example.sportikmobileapp.database.notification.PgNotificationListener;
 import com.example.sportikmobileapp.fragment.AboutUsFragment;
 import com.example.sportikmobileapp.fragment.AccountFragment;
 import com.example.sportikmobileapp.fragment.BookingFragment;
 import com.example.sportikmobileapp.fragment.InventoryFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.sql.SQLException;
 
 public class MainActivity extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
@@ -26,13 +34,29 @@ public class MainActivity extends AppCompatActivity {
     AccountFragment accountFragment = new AccountFragment();
     AboutUsFragment aboutUsFragment = new AboutUsFragment();
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        bottomNavigationView = findViewById(R.id.bottom_navigation);
+        /*if(!foregroundServiceRunning()) {
+            Intent serviceIntent = new Intent(this,
+                    MyForegroundService.class);
+            startForegroundService(serviceIntent);
+        }*/
 
+
+        /*
+        Thread notificationListenerThread = null;
+        try {
+            notificationListenerThread = new Thread(new PgNotificationListener(this));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        notificationListenerThread.start();*/
+
+        bottomNavigationView = findViewById(R.id.bottom_navigation);
         getSupportFragmentManager().beginTransaction().replace(R.id.containerFrame, inventoryFragment).commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -72,5 +96,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    public boolean foregroundServiceRunning(){
+        /*
+        ActivityManager activityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for(ActivityManager.RunningServiceInfo service: activityManager.getRunningServices(Integer.MAX_VALUE)) {
+            if(MyForegroundService.class.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }*/
+        return false;
     }
 }

@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.sportikmobileapp.activity.BookingAddActivity;
 import com.example.sportikmobileapp.R;
@@ -51,6 +52,9 @@ public class BookingFragment extends Fragment {
         btnBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //проверка, есть ли он в черном списке
+                if(isBlackList())
+                    return;
                 Intent intent = new Intent(getActivity(), BookingAddActivity.class);
                 startActivityForResult(intent, 100);
             }
@@ -66,6 +70,34 @@ public class BookingFragment extends Fragment {
 
         downloadDataToRecyclerview();
         return view;
+    }
+
+    private boolean isBlackList() {
+        ConnectionDatabase connectionSQL = new ConnectionDatabase();
+        connection = connectionSQL.connectionClass();
+        if(connection != null) {
+
+            SharedPreferences sharedPref = getActivity().getSharedPreferences(getString(R.string.pref_file), Context.MODE_PRIVATE);
+            int user_id = sharedPref.getInt(getString(R.string.pref_id), 0);
+
+            //int user_id = 1;
+
+            String sqlQuery = "select черный_список from Пользователь where Пользовательid = " + user_id;
+
+            Statement statement = null;
+            try {
+                statement = connection.createStatement();
+                ResultSet set = statement.executeQuery(sqlQuery);
+                set.next();
+                if(set.getBoolean(1)){
+                    Toast.makeText(getActivity(), "Вы в черном списке!\nПодача заявки запрещена.\nОбратитесь к сотрудникам", Toast.LENGTH_LONG).show();
+                    return true;
+                }
+            } catch (Exception e) {
+                Log.e("Error: ", e.getMessage());
+            }
+        }
+        return false;
     }
 
     @Override

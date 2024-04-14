@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -33,6 +34,7 @@ import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.DateValidatorPointForward;
 import com.google.android.material.datepicker.MaterialDatePicker;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -140,7 +142,30 @@ public class BookingAddActivity extends AppCompatActivity {
                 saveBooking();
             }
         });
+
+        txtAgreement.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openDocument("dogovor");
+            }
+        });
     }
+
+    private void openDocument(String name) {
+        Intent intent = new Intent(android.content.Intent.ACTION_VIEW);
+        File file = new File(name);
+        String extension = android.webkit.MimeTypeMap.getFileExtensionFromUrl(Uri.fromFile(file).toString());
+        String mimetype = android.webkit.MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+        if (extension.equalsIgnoreCase("") || mimetype == null) {
+            // if there is no extension or there is no definite mimetype, still try to open the file
+            intent.setDataAndType(Uri.fromFile(file), "text/*");
+        } else {
+            intent.setDataAndType(Uri.fromFile(file), mimetype);
+        }
+        // custom message for the intent
+        startActivity(Intent.createChooser(intent, "Choose an Application:"));
+    }
+
     private void defaultValues(){
         bookingDetalList = new ArrayList<>();
         totalSum = 0f;
